@@ -1,9 +1,9 @@
 #! /bin/bash
 #variable
 TIMESTAMP=$(date +"%F-%H-%M")
-BACKUP_DIR="/backup/mysql_dump/$TIMESTAMP"
+BACKUP_DIR="/backup/Psotsql_dump/$TIMESTAMP"
 #we use find to keep only 7 copies of databases
-find  /backup/mysql_dump/ -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \;
+find  /backup/Postsql_dump/ -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \;
 mkdir -p "$BACKUP_DIR/"
 #this command to list all database without database template0
 databases=` sudo -i -u postgres  psql template1 -c "\l"|tail -n+4|cut -d'|' -f 1|sed -e '/^ *$/d'|sed -e '$d'|grep -iv "template0"`
